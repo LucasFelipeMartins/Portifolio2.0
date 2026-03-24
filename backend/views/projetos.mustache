@@ -1,0 +1,47 @@
+{{> head}}
+<body>
+    {{> header}}
+
+    <main class="container page-projetos">
+        <div class="page-header reveal">
+            <div class="breadcrumb">
+                <a href="/" data-i18n="nav_home">{{projectsPage.breadcrumbHome}}</a> 
+                <i class="fa-solid fa-chevron-right"></i> 
+                <span class="active" data-i18n="page_proj_title">{{projectsPage.title}}</span>
+            </div>
+            <h1 class="page-title" data-i18n="page_proj_title">{{projectsPage.title}}</h1>
+            <p class="page-subtitle" data-i18n="page_proj_sub">{{projectsPage.subtitle}}</p>
+        </div>
+
+        <div class="projects-layout">
+            <section class="filters-section reveal stagger-1">
+                <div class="filter-group">
+                    <h4 data-i18n="side_cat">Categorias</h4>
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-filter="all"><span data-i18n="side_all">Todos os projetos</span></button>
+                        <button class="filter-pill" data-filter="frontend"><span data-i18n="side_front">Frontend</span></button>
+                        <button class="filter-pill" data-filter="backend"><span data-i18n="side_back">Backend</span></button>
+                        <button class="filter-pill" data-filter="fullstack"><span data-i18n="side_full">Fullstack</span></button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h4 data-i18n="filter_status">Status</h4>
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-filter="all"><span data-i18n="stat_all">Todos os status</span></button>
+                        <button class="filter-pill" data-filter="finished"><span data-i18n="stat_finished">Finalizados</span></button>
+                        <button class="filter-pill" data-filter="production"><span data-i18n="stat_prod">Em produção</span></button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="projects-grid-main" id="projects-grid-main">
+                <p style="text-align: center; grid-column: 1/-1; color: var(--text-muted); padding: 40px;">{{projectsPage.loadingText}}</p>
+            </div>
+        </div>
+    </main>
+
+    {{> footer}}
+    {{> scripts}}
+</body>
+</html>

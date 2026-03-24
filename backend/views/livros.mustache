@@ -1,0 +1,50 @@
+{{> head}}
+<body>
+    <div class="mobile-menu-overlay" id="mobile-overlay"></div>
+
+    {{> header}}
+
+    <main class="container">
+        <section class="hero-books reveal">
+            <div class="hero-content-books">
+                <h1 class="stagger-1" data-i18n="books_title">{{booksPage.title}}</h1>
+                <p class="stagger-2" data-i18n="books_desc">{{booksPage.description}}</p>
+            </div>
+        </section>
+
+        <section class="filters-section reveal stagger-3">
+            <div class="filter-group">
+                <h4 data-i18n="filter_cat">Categorias</h4>
+                <div class="filter-pills">
+                    <button class="filter-pill active" data-filter="all" data-i18n="cat_all">Todos os livros</button>
+                    <button class="filter-pill" data-filter="Dev.pessoal" data-i18n="cat_fiction">Dev. Pessoal</button>
+                    <button class="filter-pill" data-filter="outro" data-i18n="cat_other">Outro</button>
+                    <button class="filter-pill" data-filter="eng" data-i18n="cat_eng">Engenharia de Software</button>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <h4 data-i18n="filter_status">Status</h4>
+                <div class="filter-pills">
+                    <button class="filter-pill active" data-filter="all" data-i18n="stat_all">Todos os status</button>
+                    <button class="filter-pill" data-filter="lido" data-i18n="stat_read">Lido</button>
+                    <button class="filter-pill" data-filter="lendo" data-i18n="stat_reading">Lendo</button>
+                    <button class="filter-pill" data-filter="quero" data-i18n="stat_want">Quero Ler</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="books-grid-section reveal stagger-4">
+            <div class="books-grid" id="books-grid">
+                <div style="text-align: center; grid-column: 1/-1; padding: 40px; color: var(--text-muted);">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                    <p>{{booksPage.loadingText}}</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {{> footer}}
+    {{> scripts}}
+</body>
+</html>

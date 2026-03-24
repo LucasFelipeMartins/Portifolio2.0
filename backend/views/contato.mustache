@@ -1,0 +1,77 @@
+{{> head}}
+<body>
+    {{> header}}
+
+    <main class="container page-contact">
+        <div class="page-header reveal" style="text-align: center;">
+            <div class="breadcrumb" style="justify-content: center;">
+                <a href="/" data-i18n="nav_home">Início</a> 
+                <i class="fa-solid fa-chevron-right"></i> 
+                <span class="active" data-i18n="nav_contact">{{contactPage.breadcrumb}}</span>
+            </div>
+            
+            <div class="contact-icon stagger-1">
+                <i class="fa-regular fa-comment-dots"></i>
+            </div>
+            
+            <h1 class="page-title stagger-2" data-i18n="page_contact_title">{{contactPage.title}}</h1>
+            <p class="page-subtitle stagger-3" style="margin: 0 auto;" data-i18n="page_contact_sub">{{contactPage.subtitle}}</p>
+        </div>
+
+        <div class="contact-form-container reveal stagger-4">
+            <div class="contact-form-card">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-i18n="form_name">Nome</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Seu nome" data-i18n-placeholder="form_name_ph" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" data-i18n="form_email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="seu.email@exemplo.com" data-i18n-placeholder="form_email_ph" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" data-i18n="form_message">Mensagem</label>
+                        <textarea id="message" name="message" class="form-control" rows="5" placeholder="Sua mensagem..." data-i18n-placeholder="form_message_ph" required></textarea>
+                    </div>
+
+                    {{#security.captchaEnabled}}
+                    <div class="form-group">
+                        <label>Verificação de segurança</label>
+                        <div id="contactCaptcha" class="g-recaptcha" data-sitekey="{{security.captchaSiteKey}}"></div>
+                        <input type="hidden" id="captchaToken" name="captchaToken">
+                        <small class="captcha-hint">Protegido por reCAPTCHA</small>
+                    </div>
+                    {{/security.captchaEnabled}}
+
+                    {{^security.captchaEnabled}}
+                    <div class="alert alert-warning" role="alert">
+                        O formulário está temporariamente indisponível. Entre em contato diretamente por e-mail.
+                    </div>
+                    {{/security.captchaEnabled}}
+                    
+                    <button type="submit" class="btn btn-solid btn-full" data-i18n="btn_send" {{^security.captchaEnabled}}disabled{{/security.captchaEnabled}}>Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    {{> footer}}
+    {{> scripts}}
+    {{#security.captchaEnabled}}
+    <script>
+        window.__CONTACT_CAPTCHA_SITE_KEY = '{{security.captchaSiteKey}}';
+        window.__contactCaptchaReady = false;
+        window.__bootstrapContactCaptcha = window.__bootstrapContactCaptcha || null;
+        window.onContactCaptchaReady = function () {
+            window.__contactCaptchaReady = true;
+            if (typeof window.__bootstrapContactCaptcha === 'function') {
+                window.__bootstrapContactCaptcha();
+            }
+        };
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit&amp;onload=onContactCaptchaReady" async defer></script>
+    {{/security.captchaEnabled}}
+</body>
+</html>

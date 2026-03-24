@@ -1,0 +1,24 @@
+<div class="exp-header-title">
+    <div>
+        <h3 data-i18n="{{titleKey}}">{{title}}</h3>
+        <p data-i18n="{{subtitleKey}}">{{subtitle}}</p>
+    </div>
+    <i class="fa-solid fa-chevron-down"></i>
+</div>
+{{#hasDetails}}
+<div class="exp-details">
+    <ul class="exp-bullets">
+        {{#bullets}}
+        <li>{{.}}</li>
+        {{/bullets}}
+    </ul>
+    <div class="tags">
+        {{#tags}}
+        <span class="tag">{{.}}</span>
+        {{/tags}}
+    </div>
+</div>
+{{/hasDetails}}
+{{^hasDetails}}
+<div class="exp-details"></div>
+{{/hasDetails}}

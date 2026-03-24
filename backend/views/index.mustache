@@ -1,0 +1,268 @@
+{{> head}}
+<body>
+    <div class="mobile-menu-overlay" id="mobile-overlay"></div>
+
+    {{> header}}
+
+    <main class="container">
+        <section id="inicio" class="hero reveal">
+            <div class="hero-content">
+                <h1 class="stagger-1">{{hero.name}}</h1>
+                <p class="stagger-2" data-i18n="hero_desc">{{hero.description}}</p>
+                <div class="location stagger-3">
+                    <i class="fas fa-map-marker-alt"></i> <span data-i18n="hero_location">{{hero.location}}</span>
+                </div>
+
+                <div class="hero-buttons stagger-3">
+                    <a href="{{hero.cvPath}}" download="{{hero.cvFileName}}" class="btn btn-outline" data-i18n="btn_cv">{{hero.cvLabel}}</a>
+                    <a href="/contato" class="btn btn-solid" data-i18n="btn_contact">{{hero.contactCta}}</a>
+                </div>
+
+                <div class="hero-buttons stagger-3">
+                    <div class="tech-icons-hero">
+                        <i class="fab fa-js"></i>
+                        <i class="fab fa-react"></i>
+                        <i class="fas fa-leaf"></i>
+                        <i class="fab fa-node-js"></i>
+                        <i class="fas fa-server"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-avatar stagger-2">
+                <img src="{{hero.avatar}}" alt="{{hero.name}}">
+            </div>
+        </section>
+
+        <section class="stats reveal">
+            {{#stats}}
+            <div class="stat-card">
+                <h3>{{value}}</h3>
+                <p data-i18n="{{i18nKey}}">{{text}}</p>
+            </div>
+            {{/stats}}
+        </section>
+
+        <section id="experiencia" class="reveal">
+            <h2 class="section-title" data-i18n="exp_title">Experiências Profissionais</h2>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                {{#experiences}}
+                <div class="timeline-item">
+                    {{#isContentLeft}}
+                    <div class="timeline-panel left-panel content-panel">
+                        {{> experiencePanel}}
+                    </div>
+                    <div class="timeline-node">
+                        {{{node}}}
+                    </div>
+                    <div class="timeline-panel right-panel date-panel">
+                        <h4 class="timeline-date">{{dateRange}}</h4>
+                        <span class="timeline-duration">{{duration}}</span>
+                    </div>
+                    {{/isContentLeft}}
+
+                    {{#isContentRight}}
+                    <div class="timeline-panel left-panel date-panel text-right">
+                        <h4 class="timeline-date">{{dateRange}}</h4>
+                        <span class="timeline-duration">{{duration}}</span>
+                    </div>
+                    <div class="timeline-node">
+                        {{{node}}}
+                    </div>
+                    <div class="timeline-panel right-panel content-panel">
+                        {{> experiencePanel}}
+                    </div>
+                    {{/isContentRight}}
+                </div>
+                {{/experiences}}
+            </div>
+        </section>
+
+        <section id="projetos" class="reveal">
+            <h2 class="section-title" data-i18n="proj_title">Projetos em Destaque</h2>
+            <div class="projects-grid">
+                <div class="project-card card-animated">
+                    <h3 class="project-title" data-i18n="proj_1_title">$ Ateliê</h3>
+                    <p class="exp-date" style="margin-bottom: 12px;" data-i18n="proj_1_det">Detalhes • 1 repositório</p>
+                    <p class="project-desc" data-i18n="proj_1_desc">Projeto de uma loja virtual para um ateliê de produtos artesanais, desenvolvido para facilitar o gerenciamento de clientes e vendas. A plataforma busca unir praticidade e identidade visual do ateliê, oferecendo uma experiência simples e organizada. Atualmente, o projeto ainda está em fase de desenvolvimento.</p>
+                    <div class="tags">
+                        <span class="tag" data-i18n="tag_html">Html</span>
+                        <span class="tag" data-i18n="tag_css">Css</span>
+                        <span class="tag" data-i18n="tag_typescript">TypeScript</span>
+                        <span class="tag" data-i18n="tag_node">Node.js</span>
+                        <span class="tag" data-i18n="tag_mongodb">MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="project-card card-animated">
+                    <h3 class="project-title" data-i18n="proj_2_title">$ Projeto-EmComp</h3>
+                    <p class="exp-date" style="margin-bottom: 12px;" data-i18n="proj_2_det">Detalhes • 2 repositórios</p>
+                    <p class="project-desc" data-i18n="proj_2_desc">Projeto de uma loja virtual de roupas desenvolvido na Emcomp, com foco em um e-commerce moderno, responsivo e escalável. Fui responsável pela construção do front-end, priorizando desempenho, usabilidade e adaptação para diferentes dispositivos. O back-end ainda está em desenvolvimento, com previsão de integração completa em breve.</p>
+                    <div class="tags">
+                        <span class="tag" data-i18n="tag_react">React.js</span>
+                        <span class="tag" data-i18n="tag_typescript">TypeScript</span>
+                        <span class="tag" data-i18n="tag_mongodb">MongoDB</span>
+                        <span class="tag" data-i18n="tag_node">Node.js</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnologias" class="reveal">
+            <h2 class="section-title" data-i18n="tech_title">Tecnologias</h2>
+            <div class="tech-grid">
+                <div class="tech-card card-animated">
+                    <i class="fab fa-java"></i>
+                    <span data-i18n="tech_java">Java</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fas fa-code"></i>
+                    <span data-i18n="tech_cpp">C++</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-php"></i>
+                    <span data-i18n="tech_php">PHP</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-laravel"></i>
+                    <span data-i18n="tech_laravel">Laravel</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-python"></i>
+                    <span data-i18n="tech_python">Python</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-node"></i>
+                    <span data-i18n="tech_node">Node.js</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fas fa-server"></i>
+                    <span data-i18n="tech_adonis">Adonis</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-vuejs"></i>
+                    <span data-i18n="tech_vue">Vue.js</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-js"></i>
+                    <span data-i18n="tech_typescript">TypeScript</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-react"></i>
+                    <span data-i18n="tech_react">React.js</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fas fa-forward"></i>
+                    <span data-i18n="tech_next">Next.js</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-bootstrap"></i>
+                    <span data-i18n="tech_bootstrap">Bootstrap</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fas fa-wind"></i>
+                    <span data-i18n="tech_tailwind">Tailwind</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-git-alt"></i>
+                    <span data-i18n="tech_git">Git</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-github"></i>
+                    <span data-i18n="tech_github">GitHub</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fas fa-database"></i>
+                    <span data-i18n="tech_mysql">MySQL</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fas fa-database"></i>
+                    <span data-i18n="tech_postgres">PostgreSQL</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fas fa-leaf"></i>
+                    <span data-i18n="tech_mongo">MongoDB</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fas fa-fire"></i>
+                    <span data-i18n="tech_firebase">Firebase</span>
+                </div>
+
+                <div class="tech-card card-animated">
+                    <i class="fab fa-docker"></i>
+                    <span data-i18n="tech_docker">Docker</span>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="recomendacoes" class="reveal">
+            <h2 class="section-title" data-i18n="rec_title">Recomendações</h2>
+            <div class="recom-grid">
+                <div class="recom-card card-animated">
+                    <div class="recom-header">
+                        <div class="recom-avatar">FJ</div>
+                        <div>
+                            <h4>Felipe Justino</h4>
+                        </div>
+                    </div>
+                    <p class="recom-text" data-i18n="rec_1">“Ótimo profissional, muito capacitado e prestativo. Foi um privilégio poder ter contado com você durante o  desenvolvimento de projetos na EMCOMP - Empresa Junior do IF Sudeste MG - Campus Rio Pomba.”</p>
+                </div>
+
+                <div class="recom-card card-animated">
+                    <div class="recom-header">
+                        <div class="recom-avatar" style="background: var(--secondary); color:#000;">SM</div>
+                        <div>
+                            <h4>Simone</h4>
+                        </div>
+                    </div>
+                    <p class="recom-text" data-i18n="rec_2">“Excelente profissional! Muito atencioso e dedicado, entendeu perfeitamente o que eu precisava para o meu ateliê. O resultado ficou lindo e superou minhas expectativas. Recomendo muito!”
+                    </p>
+                </div>
+
+                <div class="recom-card card-animated">
+                    <div class="recom-header">
+                        <div class="recom-avatar" style="background: #e91e63;">GB</div>
+                        <div>
+                            <h4>Gilberto</h4>
+                        </div>
+                    </div>
+                    <p class="recom-text" data-i18n="rec_3">“Excelente profissional! Desde o início foi muito atencioso e entendeu perfeitamente a proposta da minha hamburgueria. Me ajudou em todo o processo, sempre disponível e com ótimas ideias. O resultado ficou incrível, superou minhas expectativas. Recomendo com certeza!”
+</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="reveal">
+            <h2 class="section-title" data-i18n="blog_title">Últimos Posts</h2>
+            <div id="home-latest-post" class="project-card card-animated" style="display: flex; flex-direction: column; gap: 8px;">
+                <p class="exp-date" data-i18n="home_blog_empty">Ainda não existe nenhum post. O blog está em construção.</p>
+            </div>
+        </section>
+
+    </main>
+
+    {{> footer}}
+    {{> scripts}}
+</body>
+</html>

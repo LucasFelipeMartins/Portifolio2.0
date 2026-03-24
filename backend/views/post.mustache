@@ -1,0 +1,102 @@
+{{> head}}
+<body>
+    {{> header}}
+
+    <main class="container page-article">
+        <div class="article-layout reveal stagger-1">
+            <article class="article-main">
+                <a href="/blog" class="back-link" data-i18n="back_to_blog">
+                    <i class="fa-solid fa-arrow-left"></i> {{postPage.backLabel}}
+                </a>
+
+                <div class="article-header">
+                    <h1 class="article-title" data-i18n="post_1_title">{{postPage.title}}</h1>
+                    
+                    <div class="article-meta">
+                        <span data-i18n="post_1_date"><i class="fa-regular fa-calendar"></i> {{postPage.date}}</span>
+                        <span data-i18n="post_1_time"><i class="fa-regular fa-clock"></i> {{postPage.readTime}}</span>
+                    </div>
+
+                    <div class="tags">
+                        <span class="tag">Next.js</span>
+                        <span class="tag">Tanstack</span>
+                        <span class="tag">React</span>
+                        <span class="tag" data-i18n="tag_front_arch">Frontend Architecture</span>
+                        <span class="tag" data-i18n="tag_web_dev">Web Development</span>
+                    </div>
+                </div>
+
+                <div class="article-body">
+                    <p data-i18n="post_1_p1">Nos últimos meses tenho visto cada vez mais relatos de times migrando projetos de <a href="#">Next.js</a> para <a href="#">TanStack</a>. Casos como o da <a href="#">Inngest</a>, que reduziu o tempo de dev local em 83%, o da <a href="#">OpenPanel</a> e o da <a href="#">Documenso</a> são cada vez mais comuns. E toda vez que leio um desses relatos, não consigo parar de pensar: será que Next foi realmente a escolha certa desde o começo?</p>
+
+                    <p data-i18n="post_1_p2">Não me entendam mal. Eu conheço os problemas desde a <a href="#">migração do Pages Router para o App Router</a>, o <a href="#">impacto que isso teve na experiência de desenvolvimento</a>, as discussões sobre <a href="#">lock-in com a Vercel</a> e até algumas <a href="#">questões de segurança</a> que surgiram no caminho. Mas talvez o ponto principal não seja "Next é ruim". Talvez o ponto seja outro: será que a maioria desses projetos realmente precisavam usar Next?</p>
+
+                    <h2 id="o-que-e" data-i18n="post_1_h2_1">O que Next.js realmente é</h2>
+
+                    <p data-i18n="post_1_p3">Next é, primeiramente, um framework <strong>opinativo</strong> pra construção de aplicações React com um foco imenso em renderização no servidor. Ele foi pensado pra <strong>SSR</strong>, <strong>ISR</strong>, <strong>SSG</strong> e toda essa sopa de letrinhas que a Vercel ajudou a popularizar. A proposta inicial sempre foi muito clara: pré-renderizar ao máximo, servir HTML pra otimizar SEO, reduzir tempo de carregamento e entregar uma experiência extremamente performática <strong>após</strong> o build. No cenário ideal, você gera páginas estáticas, invalida cache quando necessário, e entrega páginas mais performáticas.</p>
+
+                    <p data-i18n="post_1_p4">Exemplos de uso quase perfeitos para isso são:</p>
+
+                    <ul>
+                        <li data-i18n="post_1_li_1">Blogs</li>
+                        <li data-i18n="post_1_li_2">Portais de notícia</li>
+                        <li data-i18n="post_1_li_3">Landing pages</li>
+                        <li data-i18n="post_1_li_4">Marketplaces com catálogo público</li>
+                        <li data-i18n="post_1_li_5">E-commerces com foco em SEO</li>
+                    </ul>
+
+                    <p data-i18n="post_1_p5">Ou seja: produtos onde o conteúdo pode ser pré-renderizado e o SEO é extremamente necessário pro sucesso.</p>
+
+                    <h2 id="quando-nao-faz-sentido" data-i18n="post_1_h2_2">Quando a escolha não faz sentido</h2>
+
+                    <p data-i18n="post_1_p6">O problema começa quando pegamos essa ferramenta, pensada pra server-side, e aplicamos em sistemas totalmente dinâmicos e dependentes do client.</p>
+
+                    <ul>
+                        <li data-i18n="post_1_li_6">Sistemas internos com muita interatividade</li>
+                        <li data-i18n="post_1_li_7">Aplicações com múltiplos filtros, modais, estados locais complexos e atualizações frequentes de dados.</li>
+                        <li data-i18n="post_1_li_8">Produtos onde praticamente tudo depende de quem está logado e do que ele acabou de fazer.</li>
+                    </ul>
+
+                    <p data-i18n="post_1_p7">Se SEO não é prioridade e quase nada pode ser gerado estaticamente, o HTML pré-renderizado deixa de ser diferencial. O que passa a importar, é estado, interatividade e previsibilidade no client.</p>
+
+                    <h2 id="onde-tanstack-encaixa" data-i18n="post_1_h2_3">Onde o TanStack se encaixa</h2>
+
+                    <p data-i18n="post_1_p8">E é aí que entra o TanStack.</p>
+
+                    <p data-i18n="post_1_p9"><a href="#">TanStack</a> segue um modelo muito mais próximo de uma <strong>SPA</strong> tradicional, com SSR como opt-in, não como premissa arquitetural. O fluxo padrão é simples: rota, query, mutação, invalidação.</p>
+
+                    <p data-i18n="post_1_p10">Não existe a mesma preocupação constante sobre se um componente deve ser server ou client side. A aplicação nasce essencialmente como client, e o uso de server rendering é uma decisão consciente, não o ponto de partida.</p>
+
+                    <p data-i18n="post_1_p11">Talvez o que esteja acontecendo agora não seja uma "rejeição ao Next". É só o reflexo da escolha do framework do momento ao invés de escolhas pensando em arquitetura e produto.</p>
+                </div>
+
+                <div class="share-section">
+                    <p data-i18n="share_post">{{postPage.shareLabel}}</p>
+                    <div class="share-buttons">
+                        <button class="btn-share"><i class="fa-brands fa-linkedin"></i> LinkedIn</button>
+                        <button class="btn-share"><i class="fa-brands fa-x-twitter"></i> X</button>
+                    </div>
+                </div>
+            </article>
+
+            <aside class="article-sidebar">
+                <div class="toc-card">
+                    <h3 data-i18n="toc_title">Sumário</h3>
+                    <ul class="toc-list">
+                        <li><a href="#o-que-e" data-i18n="post_1_h2_1">O que Next.js realmente é</a></li>
+                        <li><a href="#quando-nao-faz-sentido" data-i18n="post_1_h2_2">Quando a escolha não faz sentido</a></li>
+                        <li><a href="#onde-tanstack-encaixa" data-i18n="post_1_h2_3">Onde o TanStack se encaixa</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <a href="#" class="btn-back-to-top" id="back-to-top" data-i18n="back_to_top">
+        <i class="fa-solid fa-arrow-up"></i> Voltar ao topo
+    </a>
+
+    {{> footer}}
+    {{> scripts}}
+</body>
+</html>

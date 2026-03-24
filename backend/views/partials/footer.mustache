@@ -1,0 +1,19 @@
+<footer class="container reveal">
+    <div class="footer-content">
+        <div class="footer-col" style="max-width: 300px;">
+            <h4 style="color: var(--primary);">{{footer.ownerName}}</h4>
+            <p data-i18n="footer_desc">{{footer.description}}</p>
+        </div>
+        {{#footer.columns}}
+        <div class="footer-col">
+            <h4 data-i18n="{{i18nKey}}">{{title}}</h4>
+            {{#links}}
+            <a href="{{href}}"{{#dataKey}} data-i18n="{{dataKey}}"{{/dataKey}}>{{label}}</a>
+            {{/links}}
+        </div>
+        {{/footer.columns}}
+    </div>
+    <div class="copyright">
+        <span data-i18n="footer_copy">{{footer.copy}}</span>
+    </div>
+</footer>
