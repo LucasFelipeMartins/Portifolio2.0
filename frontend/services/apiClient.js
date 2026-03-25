@@ -1,6 +1,25 @@
 import { useFetch } from '../hooks/useFetch.js';
 
-const API_BASE_URL = 'http://localhost:3000/api';
+const normalizeOrigin = (origin) => origin?.replace(/\/$/, '') || '';
+
+const resolveBrowserBaseUrl = () => {
+    if (typeof window === 'undefined') {
+        return 'http://localhost:3000/api';
+    }
+
+    if (window.__API_BASE_URL) {
+        return window.__API_BASE_URL;
+    }
+
+    const origin = normalizeOrigin(window.location.origin);
+    if (/localhost|127\.0\.0\.1/.test(origin)) {
+        return `${origin}/api`;
+    }
+
+    return '/api';
+};
+
+const API_BASE_URL = resolveBrowserBaseUrl();
 
 const buildOptions = (method, body, extra = {}) => {
     const headers = { 'Content-Type': 'application/json', ...(extra.headers || {}) };

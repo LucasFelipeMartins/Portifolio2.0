@@ -1,6 +1,9 @@
 import { initTranslations } from '/components/i18n.js';
 import { contactService } from '/services/contactService.js';
 import { analyticsService } from '/services/analyticsService.js';
+import { projectsService } from '/services/projectsService.js';
+import { postsService } from '/services/postsService.js';
+import { booksService } from '/services/booksService.js';
 
 const initThemeToggle = () => {
     const toggle = document.getElementById('theme-toggle');
@@ -247,9 +250,8 @@ const loadProjects = async () => {
     if (!projectsGrid) return;
 
     try {
-        const response = await fetch('http://localhost:3000/api/projects');
-        if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
-        const projects = await response.json();
+        projectsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Carregando projetos...</p>';
+        const projects = await projectsService.fetchAll();
 
         projectsGrid.innerHTML = '';
 
@@ -309,9 +311,11 @@ const loadBlogPosts = async () => {
     };
 
     try {
-        const response = await fetch('http://localhost:3000/api/posts');
-        if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
-        const posts = await response.json();
+        if (blogContainer) {
+            blogContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted);">Carregando...</p>';
+        }
+
+        const posts = await postsService.fetchAll();
 
         if (blogContainer) {
             blogContainer.innerHTML = '';
@@ -370,11 +374,7 @@ const loadBlogPosts = async () => {
                     const postId = card?.getAttribute('data-id');
                     if (!postId) return;
 
-                    fetch(`http://localhost:3000/api/posts/${postId}/view`, {
-                        method: 'PATCH',
-                        headers: { 'Content-Type': 'application/json' },
-                        keepalive: true
-                    }).catch((err) => console.error('Erro na API de views:', err));
+                    postsService.incrementView(postId);
                 });
             });
         }
@@ -447,9 +447,8 @@ const loadBooks = async () => {
     if (!booksGrid) return;
 
     try {
-        const response = await fetch('http://localhost:3000/api/books');
-        if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
-        const books = await response.json();
+        booksGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Carregando estante...</p>';
+        const books = await booksService.fetchAll();
 
         booksGrid.innerHTML = '';
 

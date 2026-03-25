@@ -11,4 +11,6 @@ const ProjectSchema = new mongoose.Schema({
     live_url: { type: String }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Project', ProjectSchema, 'Projects');
+const collectionName = process.env.PROJECTS_COLLECTION || 'Projects';
+
+module.exports = mongoose.model('Project', ProjectSchema, collectionName);
