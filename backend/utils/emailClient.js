@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const dns = require('dns');
 const config = require('../config/env');
 
 let cachedTransporter;
@@ -37,8 +38,15 @@ const buildTransporter = () => {
         pool: true,
         maxConnections: 2,
         maxMessages: 50,
-        family,
-        logger: config.nodeEnv !== 'production'
+        logger: config.nodeEnv !== 'production',
+        dnsLookup: (hostname, options, callback) => {
+            const lookupOptions = {
+                ...(options || {}),
+                family,
+                all: false
+            };
+            dns.lookup(hostname, lookupOptions, callback);
+        }
     });
 };
 
