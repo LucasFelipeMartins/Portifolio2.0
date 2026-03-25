@@ -13,6 +13,7 @@ const buildTransporter = () => {
         host,
         port,
         secure,
+        requireTLS,
         rejectUnauthorized,
         connectionTimeoutMs,
         greetingTimeoutMs,
@@ -32,6 +33,7 @@ const buildTransporter = () => {
             minVersion: 'TLSv1.2',
             rejectUnauthorized
         },
+        requireTLS,
         connectionTimeout: connectionTimeoutMs,
         greetingTimeout: greetingTimeoutMs,
         socketTimeout: socketTimeoutMs,

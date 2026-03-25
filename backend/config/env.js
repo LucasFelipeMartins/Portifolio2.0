@@ -11,12 +11,13 @@ const config = {
         pass: process.env.EMAIL_PASS,
         smtp: {
             host: process.env.EMAIL_SMTP_HOST || 'smtp.gmail.com',
-            port: parseInt(process.env.EMAIL_SMTP_PORT ?? '465', 10),
-            secure: process.env.EMAIL_SMTP_SECURE !== 'false',
+            port: parseInt(process.env.EMAIL_SMTP_PORT ?? '587', 10),
+            secure: process.env.EMAIL_SMTP_SECURE === 'true',
+            requireTLS: process.env.EMAIL_SMTP_REQUIRE_TLS !== 'false',
             rejectUnauthorized: process.env.EMAIL_SMTP_REJECT_UNAUTHORIZED !== 'false',
-            connectionTimeoutMs: parseInt(process.env.EMAIL_SMTP_CONN_TIMEOUT ?? '10000', 10),
-            greetingTimeoutMs: parseInt(process.env.EMAIL_SMTP_GREET_TIMEOUT ?? '10000', 10),
-            socketTimeoutMs: parseInt(process.env.EMAIL_SMTP_SOCKET_TIMEOUT ?? '20000', 10),
+            connectionTimeoutMs: parseInt(process.env.EMAIL_SMTP_CONN_TIMEOUT ?? '20000', 10),
+            greetingTimeoutMs: parseInt(process.env.EMAIL_SMTP_GREET_TIMEOUT ?? '20000', 10),
+            socketTimeoutMs: parseInt(process.env.EMAIL_SMTP_SOCKET_TIMEOUT ?? '30000', 10),
             family: parseInt(process.env.EMAIL_SMTP_FAMILY ?? '4', 10) || 4
         }
     },
