@@ -2,6 +2,9 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+const fallbackSender = process.env.EMAIL_FROM || process.env.EMAIL_FROM_ADDRESS || process.env.EMAIL_USER || 'Portfolio <mailtrap@demomailtrap.com>';
+const fallbackRecipient = process.env.CONTACT_EMAIL || process.env.EMAIL_TO || process.env.EMAIL_USER;
+
 const config = {
     nodeEnv: process.env.NODE_ENV || 'development',
     port: parseInt(process.env.PORT ?? '3000', 10),
@@ -9,6 +12,8 @@ const config = {
     email: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
+        from: fallbackSender,
+        recipient: fallbackRecipient,
         smtp: {
             host: process.env.EMAIL_SMTP_HOST || 'sandbox.smtp.mailtrap.io',
             port: parseInt(process.env.EMAIL_SMTP_PORT ?? '587', 10),
@@ -53,6 +58,16 @@ if (!config.mongoUri) {
 
 if (!config.email.user || !config.email.pass) {
     console.warn('⚠️  Variáveis EMAIL_USER e EMAIL_PASS não foram definidas. A rota /api/contact ficará indisponível.');
+}
+
+if (!config.email.recipient || !config.email.recipient.includes('@')) {
+    console.warn('⚠️  CONTACT_EMAIL não foi definido ou não parece um e-mail válido. Usando fallback mailtrap@demomailtrap.com.');
+    config.email.recipient = 'mailtrap@demomailtrap.com';
+}
+
+if (!config.email.from || !config.email.from.includes('@')) {
+    console.warn('⚠️  EMAIL_FROM não parece um endereço válido. Usando Portfolio <mailtrap@demomailtrap.com>.');
+    config.email.from = 'Portfolio <mailtrap@demomailtrap.com>';
 }
 
 if (!config.security.captcha.siteKey || !config.security.captcha.secretKey) {

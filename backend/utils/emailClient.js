@@ -21,6 +21,14 @@ const buildTransporter = () => {
         family
     } = config.email.smtp;
 
+    console.info('✉️  Configurando transporte SMTP', {
+        host,
+        port,
+        secure,
+        requireTLS,
+        pool: true
+    });
+
     return nodemailer.createTransport({
         host,
         port,
