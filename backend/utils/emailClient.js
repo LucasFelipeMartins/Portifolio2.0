@@ -8,13 +8,37 @@ const buildTransporter = () => {
         throw new Error('Credenciais de e-mail não configuradas. Defina EMAIL_USER e EMAIL_PASS no .env.');
     }
 
+    const {
+        host,
+        port,
+        secure,
+        rejectUnauthorized,
+        connectionTimeoutMs,
+        greetingTimeoutMs,
+        socketTimeoutMs,
+        family
+    } = config.email.smtp;
+
     return nodemailer.createTransport({
-        service: 'gmail',
+        host,
+        port,
+        secure,
         auth: {
             user: config.email.user,
             pass: config.email.pass
         },
-        tls: { rejectUnauthorized: false }
+        tls: {
+            minVersion: 'TLSv1.2',
+            rejectUnauthorized
+        },
+        connectionTimeout: connectionTimeoutMs,
+        greetingTimeout: greetingTimeoutMs,
+        socketTimeout: socketTimeoutMs,
+        pool: true,
+        maxConnections: 2,
+        maxMessages: 50,
+        family,
+        logger: config.nodeEnv !== 'production'
     });
 };
 

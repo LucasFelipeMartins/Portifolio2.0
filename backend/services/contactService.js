@@ -25,13 +25,21 @@ const sendContactMessage = async ({ name, email, message, context = {} }) => {
 
     const metadataBlock = metadata.length ? `\n---\n${metadata.join('\n')}` : '';
 
-    await transporter.sendMail({
-        from: config.email.user,
-        to: config.email.user,
-        subject: `Portfólio: Mensagem de ${safeName}`,
-        text: `Nome: ${safeName}\nEmail: ${safeEmail}\n\nMensagem:\n${safeMessage}${metadataBlock}`,
-        replyTo: safeEmail
-    });
+    try {
+        await transporter.sendMail({
+            from: config.email.user,
+            to: config.email.user,
+            subject: `Portfólio: Mensagem de ${safeName}`,
+            text: `Nome: ${safeName}\nEmail: ${safeEmail}\n\nMensagem:\n${safeMessage}${metadataBlock}`,
+            replyTo: safeEmail
+        });
+    } catch (error) {
+        console.error('❌ Falha ao enviar e-mail de contato:', error.message);
+        const mailError = new Error('Não foi possível enviar sua mensagem agora. Tente novamente em instantes.');
+        mailError.statusCode = 503;
+        mailError.cause = error;
+        throw mailError;
+    }
 };
 
 module.exports = {
