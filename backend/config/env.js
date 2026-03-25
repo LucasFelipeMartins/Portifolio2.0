@@ -10,7 +10,7 @@ const config = {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
         smtp: {
-            host: process.env.EMAIL_SMTP_HOST || 'smtp.gmail.com',
+            host: process.env.EMAIL_SMTP_HOST || 'sandbox.smtp.mailtrap.io',
             port: parseInt(process.env.EMAIL_SMTP_PORT ?? '587', 10),
             secure: process.env.EMAIL_SMTP_SECURE === 'true',
             requireTLS: process.env.EMAIL_SMTP_REQUIRE_TLS !== 'false',
